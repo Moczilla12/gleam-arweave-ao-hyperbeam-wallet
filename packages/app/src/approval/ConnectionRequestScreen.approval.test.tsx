@@ -118,6 +118,9 @@ describe("ConnectionRequestScreen (6.1 connection request)", () => {
 
     const img = container.querySelector("img") as HTMLImageElement | null;
     expect(img?.src).toBe("https://permaswap.example/logo.png");
+    // The approval page's URL carries the request id; the logo fetch must not send it on.
+    // (jsdom does not reflect the `referrerPolicy` IDL property, so read the attribute.)
+    expect(img?.getAttribute("referrerpolicy")).toBe("no-referrer");
   });
 
   it("falls back to the origin-derived letter tile when the logo fails to load", () => {

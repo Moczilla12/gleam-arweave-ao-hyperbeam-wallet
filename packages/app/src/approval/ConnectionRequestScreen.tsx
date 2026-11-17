@@ -68,6 +68,9 @@ export function ConnectionRequestScreen({ origin, preview, onReject, onGrant }: 
             <img
               src={logoUrl}
               alt=""
+              // The approval page's URL carries the request id, so the logo
+              // fetch must not send it to the site's host as a Referer.
+              referrerPolicy="no-referrer"
               className="h-12 w-12 rounded-lg border border-line object-cover"
               // A dApp-supplied URL that fails to load falls back to the
               // origin-derived letter tile rather than a broken image icon.
